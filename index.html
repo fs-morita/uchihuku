@@ -8,162 +8,281 @@
 <meta name="description" content="日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売まで。まじめに提案、ちょっと面白く、わかりやすく対応します。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Barlow+Condensed:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
-/* 白地に細い罫線。差し色は工作機械の「機械色」（灰みの青緑）を濃くしたもの1色だけ。冒頭は全幅の写真、以下は左寄せの2段組み。 */
+/* 工場の夜の暗さと、機械まわりの警告色（黄）1色。冒頭は全画面の写真、暗い面と白い面を交互に。 */
 :root{
-  --bg:#ffffff;
-  --panel:#eef2f0;          /* 機械色を薄く */
-  --ink:#1f2624;
-  --sub:#56605d;
-  --rule:#d5dcd9;
-  --accent:#2d5a52;         /* 機械色を濃く */
-  --accent-ink:#ffffff;
-  --display:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
-  --body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
-  --label:"Barlow Condensed","Noto Sans JP",sans-serif;
-  --w:1200px;
+  --ink:#0d0f10;
+  --ink-2:#16191b;
+  --ink-3:#1f2326;
+  --paper:#ffffff;
+  --soft:#f2f3f3;
+  --text:#2b3033;
+  --muted:#6b7377;
+  --line:#dde0e1;
+  --line-dark:rgba(255,255,255,.14);
+  --on-dark:rgba(255,255,255,.92);
+  --on-dark-2:rgba(255,255,255,.64);
+  --accent:#f5b400;          /* 警告色の黄 */
+  --jp:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --en:"Barlow Condensed","Noto Sans JP",system-ui,sans-serif;
+  --container:1200px;
+  --head:72px;
+  --ease:cubic-bezier(.22,1,.36,1);
   color-scheme:light;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;letter-spacing:.03em;font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block;height:auto}
-a{color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{max-width:calc(var(--w) + 2*clamp(18px,5vw,64px));margin:0 auto;padding-inline:clamp(18px,5vw,64px)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--head);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--jp);font-size:16px;line-height:1.9;letter-spacing:.02em;font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3,p{margin:0}
+.container{width:min(100% - 40px,var(--container));margin-inline:auto}
+@media (min-width:768px){.container{width:min(100% - 80px,var(--container))}}
+.nb{display:inline-block}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* header */
-.site-head{border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
-.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
-.logo{font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.12em;color:var(--ink);text-decoration:none}
-.nav{display:flex;gap:4px 22px;flex-wrap:wrap;font-size:14px}
-.nav a{color:var(--sub);text-decoration:none}
-.nav a:hover{color:var(--accent)}
-.nav a.cta{color:var(--accent);font-weight:700}
-@media (max-width:760px){.site-head{position:static}.nav{gap:2px 16px;font-size:13px}}
+/* ---------- header ---------- */
+.site-header{position:fixed;inset:0 0 auto;z-index:30;padding-top:env(safe-area-inset-top,0px);color:#fff;background:linear-gradient(180deg,rgba(13,15,16,.82),rgba(13,15,16,0));transition:background .3s var(--ease)}
+.site-header.is-scrolled,.site-header.is-open{background:rgba(13,15,16,.94);backdrop-filter:blur(14px)}
+.head-inner{height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:24px;padding-inline:clamp(20px,3vw,40px)}
+.brand{display:inline-flex;align-items:center;gap:12px}
+.brand-mark{display:grid;place-items:center;width:40px;height:40px;background:var(--accent);color:var(--ink);font-family:var(--en);font-weight:700;font-size:19px;letter-spacing:.04em;clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%)}
+.brand-text{display:grid;line-height:1.2}
+.brand-text b{font-size:17px;font-weight:900;letter-spacing:.1em}
+.brand-text small{font-family:var(--en);font-size:12px;font-weight:600;letter-spacing:.22em;color:var(--on-dark-2)}
+.site-nav{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:700}
+.site-nav a{position:relative;padding-block:6px;color:var(--on-dark)}
+.site-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.site-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.head-call{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;background:var(--accent);color:var(--ink);font-family:var(--en);font-weight:700;font-size:20px;letter-spacing:.04em}
+.head-call svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2}
+.head-call:hover{background:#fff}
+.nav-toggle{display:none;width:44px;height:44px;border:1px solid var(--line-dark);background:transparent;color:#fff;cursor:pointer;padding:0;align-content:center}
+.nav-toggle span{display:block;width:18px;height:2px;margin:0 auto;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
+.nav-toggle span + span{margin-top:5px}
+.is-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.is-open .nav-toggle span:nth-child(2){opacity:0}
+.is-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:960px){
+  .head-call{display:none}
+  .nav-toggle{display:grid}
+  .site-nav{position:fixed;top:calc(var(--head) + env(safe-area-inset-top,0px));left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 24px;background:rgba(13,15,16,.97);border-top:1px solid var(--line-dark);transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s,transform .3s var(--ease),visibility .25s}
+  .is-open .site-nav{opacity:1;visibility:visible;transform:none}
+  .site-nav a{padding:16px 0;font-size:16px;border-bottom:1px solid var(--line-dark)}
+  .site-nav a::after{display:none}
+  .site-nav .nav-call{display:flex;justify-content:center;align-items:center;margin-top:20px;padding:0;height:56px;background:var(--accent);color:var(--ink);font-family:var(--en);font-size:22px;border:0}
+}
+@media (min-width:961px){.site-nav .nav-call{display:none}}
 
-/* hero */
-.hero{position:relative;color:#fff;background:var(--ink);overflow:hidden}
-.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 60%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,22,20,.78) 0%,rgba(16,22,20,.5) 45%,rgba(16,22,20,.08) 100%)}
-.hero .wrap{position:relative;z-index:1;padding-block:clamp(88px,12vw,150px) clamp(72px,9vw,120px)}
-.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(44px,7.4vw,92px);line-height:1.15;letter-spacing:.08em;margin:0 0 28px}
-.hero .lead{font-size:clamp(16px,1.5vw,18px);font-weight:500;margin:0;max-width:27em;line-height:2;text-wrap:pretty}
-.hero .tags{display:flex;flex-wrap:wrap;gap:8px 0;margin:36px 0 0;padding:0;list-style:none}
-.hero .tags li{font-size:14px;font-weight:500;padding:2px 18px 2px 0;margin-right:18px;border-right:1px solid rgba(255,255,255,.4)}
-.hero .tags li:last-child{border-right:0}
-.hero .cap{position:absolute;right:clamp(18px,5vw,64px);bottom:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75);margin:0}
-@media (max-width:600px){.hero::after{background:rgba(16,22,20,.62)}.hero .tags li{border-right:0;padding-right:0}.hero .cap{left:18px}}
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:max(620px,100svh);display:grid;align-items:end;color:#fff;background:var(--ink);overflow:hidden}
+.hero-media{position:absolute;inset:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:62% 60%;filter:saturate(.75) contrast(1.05)}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,15,16,.92) 0%,rgba(13,15,16,.72) 40%,rgba(13,15,16,.18) 80%),linear-gradient(180deg,rgba(13,15,16,.55) 0%,rgba(13,15,16,0) 30%,rgba(13,15,16,.75) 100%)}
+.hero-content{position:relative;z-index:1;padding-block:calc(var(--head) + 72px) clamp(64px,10vh,120px)}
+.eyebrow,.kicker{display:inline-flex;align-items:center;gap:12px;font-family:var(--en);font-weight:700;font-size:15px;letter-spacing:.22em;text-transform:uppercase;line-height:1.4}
+.eyebrow::before,.kicker::before{content:"";width:32px;height:2px;background:var(--accent)}
+.eyebrow{color:var(--on-dark);margin-bottom:22px}
+.hero h1{font-size:clamp(48px,8.6vw,120px);font-weight:900;line-height:1.05;letter-spacing:.02em}
+.hero h1 .en{display:block;margin-top:14px;font-family:var(--en);font-size:clamp(18px,2vw,26px);font-weight:600;letter-spacing:.32em;color:var(--accent)}
+.hero-lead{max-width:30em;margin-top:28px;font-size:clamp(16px,1.5vw,20px);font-weight:700;line-height:1.95;color:var(--on-dark);text-wrap:pretty}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0;padding:0;list-style:none}
+.hero-tags li{padding:6px 14px;border:1px solid rgba(255,255,255,.4);font-size:13px;font-weight:700;letter-spacing:.06em;background:rgba(13,15,16,.35)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+@media (max-width:560px){.hero-actions .button{flex:1 1 100%}.hero-media::after{background:linear-gradient(180deg,rgba(13,15,16,.55) 0%,rgba(13,15,16,.78) 45%,rgba(13,15,16,.9) 100%)}}
 
-figure{margin:0;min-width:0}
-.split > *,.intro .wrap > *,.contact .wrap > *{min-width:0}
-figcaption{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.6}
-figcaption .gen{white-space:nowrap}
+/* ---------- buttons ---------- */
+.button{position:relative;z-index:0;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 30px;overflow:hidden;border:1px solid currentColor;font-size:15px;font-weight:900;letter-spacing:.06em;line-height:1;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.button::before{content:"";position:absolute;inset:0;z-index:-1;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.button:hover::before,.button:focus-visible::before{transform:scaleX(1);transform-origin:left}
+.button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+.button-primary{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.button-primary::before{background:#fff}
+.button-primary:hover{border-color:#fff}
+.button-ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+.button-ghost::before{background:#fff}
+.button-ghost:hover{color:var(--ink);border-color:#fff}
+.button .num{font-family:var(--en);font-size:21px;font-weight:700;letter-spacing:.04em}
 
-/* sections */
-section{border-top:1px solid var(--rule);scroll-margin-top:60px}
-section > .wrap{padding-block:clamp(64px,9vw,120px)}
-.eyebrow{font-family:var(--label);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
-h2{font-family:var(--display);font-weight:900;font-size:clamp(28px,3.8vw,44px);line-height:1.4;letter-spacing:.05em;margin:0 0 28px;text-wrap:balance}
-h3{font-size:18px;line-height:1.6;margin:0 0 8px;font-weight:700;text-wrap:balance}
-p{margin:0}
-.text{max-width:36em}
-.text p + p{margin-top:1em}
+/* ---------- marquee ---------- */
+.marquee{display:flex;overflow:hidden;padding:16px 0;background:var(--accent);color:var(--ink);user-select:none}
+.marquee-track{display:flex;flex:0 0 auto;gap:40px;padding-right:40px;animation:marquee 38s linear infinite}
+.marquee span{display:inline-flex;align-items:center;gap:40px;font-size:clamp(17px,1.8vw,22px);font-weight:900;letter-spacing:.08em;white-space:nowrap;line-height:1}
+.marquee span::after{content:"";width:8px;height:8px;background:var(--ink);transform:rotate(45deg)}
+@keyframes marquee{to{transform:translateX(-100%)}}
+
+/* ---------- sections ---------- */
+.section{padding-block:clamp(80px,11vw,150px)}
+.section-dark{background:var(--ink);color:var(--on-dark)}
+.kicker{color:var(--muted)}
+.section-dark .kicker{color:var(--on-dark-2)}
+.heading{max-width:820px;margin-bottom:clamp(40px,5vw,64px)}
+.heading h2,.h2{margin-top:16px;font-size:clamp(30px,4.2vw,56px);font-weight:900;line-height:1.3;letter-spacing:.01em;color:var(--ink);text-wrap:balance}
+.section-dark .heading h2,.section-dark .h2{color:#fff}
+.heading p{margin-top:22px;font-size:clamp(15px,1.3vw,17px);color:var(--muted);max-width:40em}
 
 /* intro */
-.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.points{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
-.points li{padding:16px 0;border-bottom:1px solid var(--rule);font-weight:500;display:flex;gap:14px;align-items:baseline}
-.points li::before{content:"";flex:0 0 8px;height:8px;background:var(--accent);transform:translateY(-2px)}
-@media (max-width:760px){.intro .wrap{grid-template-columns:1fr;gap:32px}}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end}
+.intro-grid .heading{margin-bottom:0}
+.intro-grid h2{font-size:clamp(28px,3.6vw,48px)}
+.points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+.points li{display:grid;gap:14px;align-content:start;min-height:150px;padding:24px 20px 26px 0;border-bottom:1px solid var(--line);font-size:clamp(16px,1.4vw,18px);font-weight:900;line-height:1.55;color:var(--ink)}
+.points li:nth-child(odd){border-right:1px solid var(--line)}
+.points li:nth-child(even){padding-left:24px}
+.points li::before{content:"";width:10px;height:10px;background:var(--accent);transform:rotate(45deg);margin-top:4px}
+@media (max-width:860px){.intro-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.points{grid-template-columns:1fr}.points li,.points li:nth-child(odd),.points li:nth-child(even){display:flex;align-items:center;gap:16px;min-height:0;padding:18px 0;border-right:0}.points li::before{flex:0 0 10px;margin-top:0}}
 
 /* services */
-.services{background:var(--panel);border-top:0}
-.svc{display:grid;grid-template-columns:repeat(3,1fr);margin:8px 0 0;padding:0;list-style:none;border-top:1px solid var(--ink)}
-.svc li{padding:24px 24px 28px 0;border-right:1px solid var(--rule);min-width:0}
-.svc li + li{padding-left:24px}
-.svc li:last-child{border-right:0}
-.svc .no{font-family:var(--label);font-weight:600;font-size:40px;line-height:1;color:var(--accent);letter-spacing:.04em;display:block;margin-bottom:14px}
-.svc a{color:inherit;text-decoration:none}
-.svc a:hover h3{color:var(--accent)}
-.svc p{font-size:15px;color:var(--sub)}
-@media (max-width:760px){.svc{grid-template-columns:1fr}.svc li,.svc li + li{padding:20px 0;border-right:0;border-bottom:1px solid var(--rule)}}
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.svc{display:grid;grid-template-rows:auto 1fr;background:var(--ink-2);border:1px solid var(--line-dark);transition:border-color .3s var(--ease),transform .4s var(--ease)}
+.svc:hover{border-color:var(--accent);transform:translateY(-4px)}
+.svc-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink-3)}
+.svc-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.05);transition:transform .9s var(--ease),filter .5s}
+.svc:hover .svc-media img{transform:scale(1.05);filter:saturate(1) contrast(1.05)}
+.svc-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,16,0) 40%,rgba(13,15,16,.85) 100%)}
+.svc-index{position:absolute;left:20px;bottom:16px;z-index:1;font-family:var(--en);font-size:44px;font-weight:700;line-height:1;color:var(--accent)}
+.svc-body{display:grid;grid-template-rows:auto 1fr auto;gap:12px;padding:24px 24px 22px}
+.svc-body h3{font-size:clamp(19px,1.7vw,23px);font-weight:900;line-height:1.45;color:#fff}
+.svc-body p{font-size:15px;color:var(--on-dark-2);line-height:1.85}
+.svc-more{display:flex;justify-content:flex-end;padding-top:14px;border-top:1px solid var(--line-dark)}
+.svc-more svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;transition:transform .3s var(--ease)}
+.svc:hover .svc-more svg{transform:translateX(4px)}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr;gap:16px}.svc{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:none}.svc-media{aspect-ratio:auto;min-height:100%}}
+@media (max-width:560px){.svc{grid-template-columns:1fr}.svc-media{aspect-ratio:16/10}}
 
-/* split blocks */
-.split{display:grid;grid-template-columns:7fr 6fr;gap:clamp(40px,6vw,88px);align-items:start}
-.split.rev{grid-template-columns:6fr 7fr}
-.split figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.split.rev > figure{order:2}
-@media (max-width:820px){.split,.split.rev{grid-template-columns:1fr;gap:28px}.split.rev > figure{order:0}}
-.aside{margin-top:36px;padding:24px 0 0;border-top:1px solid var(--rule)}
-.quote{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.9;margin:10px 0 12px;padding-left:16px;border-left:2px solid var(--accent)}
-.note{font-size:13px;color:var(--sub)}
+/* feature (machines / goods) */
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.feature.rev .feature-media{order:2}
+.feature-media{position:relative}
+.feature-media img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.feature-media::before{content:"";position:absolute;left:-14px;top:-14px;width:90px;height:90px;border-left:4px solid var(--accent);border-top:4px solid var(--accent)}
+.feature.rev .feature-media::before{left:auto;right:-14px;border-left:0;border-right:4px solid var(--accent)}
+.feature .h2{margin-bottom:24px}
+.feature-text > p.body{font-size:16px;line-height:2}
+.aside{margin-top:36px;padding:28px 28px 26px;background:var(--soft);border-left:4px solid var(--accent)}
+.aside h3{font-size:18px;font-weight:900;color:var(--ink);line-height:1.6}
+.aside .quote{margin-top:12px;font-size:16px;font-weight:500;line-height:2;color:var(--ink)}
+.note{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.8}
+@media (max-width:860px){.feature{grid-template-columns:1fr}.feature.rev .feature-media{order:0}.feature-media img{aspect-ratio:16/11}.feature-media::before{left:-8px;top:-8px;width:60px;height:60px}.feature.rev .feature-media::before{right:-8px}}
+@media (max-width:420px){.aside{padding:22px 20px}}
 
-.items{display:grid;gap:0;border-top:1px solid var(--ink)}
-.item{padding:22px 0;border-bottom:1px solid var(--rule)}
-.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);border:1px solid var(--accent);padding:1px 8px;margin-bottom:10px;letter-spacing:.08em}
+/* items */
+.items{display:grid;border-top:2px solid var(--ink);margin-top:8px}
+.section-dark .items{border-top-color:rgba(255,255,255,.7)}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;padding:24px 0;border-bottom:1px solid var(--line)}
+.section-dark .item{border-bottom-color:var(--line-dark)}
+.tag{grid-row:span 2;align-self:start;padding:4px 10px;font-size:12px;font-weight:900;letter-spacing:.08em;line-height:1.5;background:var(--ink);color:#fff;white-space:nowrap}
+.section-dark .tag{background:var(--accent);color:var(--ink)}
+.item h3{font-size:clamp(17px,1.5vw,20px);font-weight:900;line-height:1.5;color:var(--ink)}
+.section-dark .item h3{color:#fff}
+.item p{font-size:15px;line-height:1.9}
+.section-dark .item p{color:var(--on-dark-2)}
+@media (max-width:420px){.item{grid-template-columns:1fr}.tag{grid-row:auto;justify-self:start}}
 
-/* flow */
-.flow{margin-top:36px}
-.flow h3{font-size:15px;color:var(--sub);font-weight:500;margin-bottom:12px}
-.flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px}
-.flow li.step{border:1px solid var(--ink);text-align:center;padding:14px 8px;font-weight:700;font-size:17px;letter-spacing:.12em}
-.flow li.step:last-child{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.flow li.arrow{width:22px;height:1px;background:var(--ink);position:relative}
-.flow li.arrow::after{content:"";position:absolute;right:0;top:-4px;border:4.5px solid transparent;border-left:7px solid var(--ink);border-right:0}
+/* molding */
+.molding-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:start}
+.molding-media img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.85)}
+@media (max-width:860px){.molding-grid{grid-template-columns:1fr}}
+.flow{margin-top:40px}
+.flow-title{font-family:var(--en);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--on-dark-2);margin-bottom:14px}
+.flow-title span{font-family:var(--jp);letter-spacing:.08em}
+.flow ol{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);align-items:center;margin:0;padding:0;list-style:none}
+.flow .step{display:grid;place-items:center;height:72px;border:1px solid rgba(255,255,255,.4);font-size:clamp(17px,1.6vw,20px);font-weight:900;letter-spacing:.14em;color:#fff}
+.flow .step:last-child{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.flow .arrow{height:2px;background:rgba(255,255,255,.5);position:relative;margin-inline:4px}
+.flow .arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid rgba(255,255,255,.5);border-right:0}
 
 /* contact */
-.contact{background:var(--accent);color:var(--accent-ink);border-top:0}
-.contact .wrap{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
-.contact .eyebrow{color:var(--accent-ink);opacity:.75}
-.contact h2{margin-bottom:16px}
-.tel{display:grid;justify-items:start;gap:4px}
-.tel-label{font-size:13px;font-weight:700;letter-spacing:.12em;opacity:.75}
-.tel-num{font-family:var(--label);font-weight:600;font-size:clamp(36px,4.6vw,52px);line-height:1.1;letter-spacing:.04em;color:var(--accent-ink);text-decoration:none;margin-bottom:20px}
-.tel-num:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
-.btn{display:inline-block;background:var(--bg);color:var(--accent);text-decoration:none;font-weight:700;padding:16px 36px;border:1px solid var(--bg);letter-spacing:.06em}
-.btn:hover{background:transparent;color:var(--accent-ink)}
-.btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
-@media (max-width:760px){.contact .wrap{grid-template-columns:1fr}}
+.contact{position:relative;background:var(--ink);color:var(--on-dark);overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background:url("img/hero.jpg") center 60%/cover no-repeat;opacity:.16;filter:grayscale(1)}
+.contact .container{position:relative}
+.contact-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);gap:clamp(40px,6vw,96px);align-items:center}
+.contact .h2{margin-bottom:22px;color:#fff}
+.contact .kicker{color:var(--on-dark-2)}
+.contact-lead{max-width:30em;font-size:clamp(15px,1.3vw,17px);color:var(--on-dark-2)}
+.phone-panel{display:grid;justify-items:stretch;gap:8px;min-width:min(100%,400px);padding:32px 34px 34px;border:1px solid rgba(255,255,255,.28);background:rgba(13,15,16,.55)}
+.phone-panel .label{font-family:var(--en);font-size:15px;font-weight:700;letter-spacing:.22em;color:var(--on-dark-2)}
+.phone-panel .label span{font-family:var(--jp);letter-spacing:.1em}
+.phone-panel .number{white-space:nowrap;font-family:var(--en);font-size:clamp(36px,10vw,60px);font-weight:700;line-height:1.05;letter-spacing:.02em;color:#fff}
+.phone-panel .button{margin-top:18px}
+@media (max-width:860px){
+  .contact-panel{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .contact .kicker{justify-content:center}
+  .contact-lead{margin-inline:auto}
+  .phone-panel{width:100%;max-width:440px;justify-items:center;text-align:center;padding:28px 22px 24px}
+  .phone-panel .button{width:100%}
+}
 
-.site-foot{border-top:1px solid var(--rule)}
-.site-foot .wrap{padding-block:28px;font-size:12px;color:var(--sub)}
-.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
+/* footer */
+.site-footer{background:#08090a;color:var(--on-dark-2);font-size:13px}
+.foot-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding-block:44px 32px;border-bottom:1px solid var(--line-dark)}
+.foot-top .brand{color:#fff}
+.foot-nav{display:flex;flex-wrap:wrap;gap:8px 24px;font-weight:700;color:var(--on-dark)}
+.foot-nav a:hover{color:var(--accent)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-block:22px calc(28px + env(safe-area-inset-bottom,0px))}
+@media (max-width:640px){.foot-top,.foot-bottom{flex-direction:column;align-items:center;text-align:center}.foot-nav{justify-content:center}}
 </style>
 </head>
 <body>
 
-<header class="site-head">
-  <div class="wrap">
-    <a class="logo" href="#top">ウチフク機械</a>
-    <nav class="nav" aria-label="ページ内">
+<header class="site-header" id="site-header">
+  <div class="head-inner">
+    <a class="brand" href="#top" aria-label="ウチフク機械 トップへ">
+      <span class="brand-mark" aria-hidden="true">UF</span>
+      <span class="brand-text"><b>ウチフク機械</b><small>UCHIFUKU KIKAI</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" id="nav-toggle">
+      <span></span><span></span><span></span><span class="sr-only">メニュー</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="ページ内">
       <a href="#services">取扱サービス</a>
       <a href="#machines">成形機販売</a>
       <a href="#molding">射出成形</a>
       <a href="#goods">ビリビリグッズ</a>
-      <a class="cta" href="#contact">お問い合わせ</a>
+      <a href="#contact">お問い合わせ</a>
+      <a class="nav-call" href="tel:0663102690">06-6310-2690</a>
     </nav>
+    <a class="head-call" href="tel:0663102690">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      06-6310-2690
+    </a>
   </div>
 </header>
 
 <main id="top">
-  <div class="hero">
-    <img src="img/hero.jpg" width="2000" height="1131" alt="射出成形機が置かれた工場のイメージ">
-    <div class="wrap">
-      <h1>ウチフク機械</h1>
-      <p class="lead">日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売まで。まじめに提案、ちょっと面白く、わかりやすく対応します。</p>
-      <ul class="tags" aria-label="サービス紹介">
+  <section class="hero" aria-label="ウチフク機械">
+    <div class="hero-media" aria-hidden="true">
+      <img src="img/hero.jpg" width="2000" height="1131" alt="">
+    </div>
+    <div class="container hero-content">
+      <p class="eyebrow">Injection Molding Machines</p>
+      <h1>ウチフク機械<span class="en">UCHIFUKU KIKAI</span></h1>
+      <p class="hero-lead">日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売まで。まじめに提案、ちょっと面白く、わかりやすく対応します。</p>
+      <ul class="hero-tags" aria-label="サービス紹介">
         <li>成形機販売</li><li>射出成形</li><li>ビリビリグッズ販売</li>
       </ul>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#contact">お問い合わせ
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="button button-ghost" href="tel:0663102690"><span class="num">06-6310-2690</span></a>
+      </div>
     </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track"><span>日精の射出成形機販売</span><span>射出成形のご相談</span><span>中古機・更新・増設</span><span>ビリビリグッズ販売</span></div>
+    <div class="marquee-track"><span>日精の射出成形機販売</span><span>射出成形のご相談</span><span>中古機・更新・増設</span><span>ビリビリグッズ販売</span></div>
   </div>
 
-  <section class="intro" aria-labelledby="intro-h">
-    <div class="wrap">
-      <div class="text">
-        <h2 id="intro-h">機械も、成形も、<br>ちょっと面白い商品も。</h2>
+  <section class="section" aria-labelledby="intro-h">
+    <div class="container intro-grid">
+      <div class="heading">
+        <p class="kicker">About</p>
+        <h2 id="intro-h"><span class="nb">機械も、成形も、</span><span class="nb">ちょっと面白い商品も。</span></h2>
         <p>ウチフク機械は、日精の射出成形機販売を中心に、射出成形に関するご相談や、イベント性のあるビリビリグッズ販売まで、幅広く対応しています。</p>
       </div>
       <ul class="points">
@@ -175,27 +294,36 @@ p{margin:0}
     </div>
   </section>
 
-  <section class="services" id="services" aria-labelledby="svc-h">
-    <div class="wrap">
-      <p class="eyebrow">Services</p>
-      <h2 id="svc-h">取扱サービス</h2>
-      <ul class="svc">
-        <li><a href="#machines"><span class="no">01</span><h3>日精の射出成形機販売</h3><p>新品・中古を含めて、現場に合う機種選定をお手伝いします。</p></a></li>
-        <li><a href="#molding"><span class="no">02</span><h3>射出成形</h3><p>製品づくりに関するご相談、成形条件や設備選びの方向性などもご相談いただけます。</p></a></li>
-        <li><a href="#goods"><span class="no">03</span><h3>ビリビリグッズ販売</h3><p>ちょっと目を引く、話題になる、面白さのあるビリビリグッズも取り扱います。</p></a></li>
-      </ul>
+  <section class="section section-dark" id="services" aria-labelledby="svc-h">
+    <div class="container">
+      <div class="heading">
+        <p class="kicker">Services</p>
+        <h2 id="svc-h">取扱サービス</h2>
+      </div>
+      <div class="svc-grid">
+        <a class="svc" href="#machines">
+          <div class="svc-media"><img src="img/machine.jpg" width="1400" height="1045" alt="射出成形機の型締め部" loading="lazy"><span class="svc-index">01</span></div>
+          <div class="svc-body"><h3>日精の射出成形機販売</h3><p>新品・中古を含めて、現場に合う機種選定をお手伝いします。</p><span class="svc-more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="#molding">
+          <div class="svc-media"><img src="img/molding.jpg" width="1400" height="1045" alt="樹脂ペレットと成形品" loading="lazy"><span class="svc-index">02</span></div>
+          <div class="svc-body"><h3>射出成形</h3><p>製品づくりに関するご相談、成形条件や設備選びの方向性などもご相談いただけます。</p><span class="svc-more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="#goods">
+          <div class="svc-media"><img src="img/goods.jpg" width="1400" height="1045" alt="ビリビリグッズ" loading="lazy"><span class="svc-index">03</span></div>
+          <div class="svc-body"><h3>ビリビリグッズ販売</h3><p>ちょっと目を引く、話題になる、面白さのあるビリビリグッズも取り扱います。</p><span class="svc-more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section id="machines" aria-labelledby="mc-h">
-    <div class="wrap split">
-      <figure>
-        <img src="img/machine.jpg" width="1400" height="1045" alt="射出成形機の型締め部分のイメージ">
-      </figure>
-      <div class="text">
-        <p class="eyebrow">01 Machines</p>
-        <h2 id="mc-h">日精の成形機をお探しなら、ウチフク機械へ</h2>
-        <p>射出成形機は、価格だけで決めると後で困ることがあります。製品サイズ、必要な能力、設置スペース、将来の生産計画まで見ながら、現場に合う機械選びをお手伝いします。</p>
+  <section class="section" id="machines" aria-labelledby="mc-h">
+    <div class="container feature">
+      <div class="feature-media"><img src="img/machine.jpg" width="1400" height="1045" alt="射出成形機の型締め部" loading="lazy"></div>
+      <div class="feature-text">
+        <p class="kicker">01 Machines</p>
+        <h2 class="h2" id="mc-h"><span class="nb">日精の成形機を</span><span class="nb">お探しなら、</span><span class="nb">ウチフク機械へ</span></h2>
+        <p class="body">射出成形機は、価格だけで決めると後で困ることがあります。製品サイズ、必要な能力、設置スペース、将来の生産計画まで見ながら、現場に合う機械選びをお手伝いします。</p>
         <div class="aside">
           <h3>購入前のご相談も、かたくなりすぎずに。</h3>
           <p class="quote">「まずは焼肉でも」「ゴルフしながらざっくばらんに」そんな人付き合いを大切にした、ちょっと面白いご相談スタイルも歓迎しています。</p>
@@ -205,14 +333,16 @@ p{margin:0}
     </div>
   </section>
 
-  <section id="molding" aria-labelledby="md-h">
-    <div class="wrap split rev">
-      <figure>
-        <img src="img/molding.jpg" width="1400" height="1045" alt="樹脂のペレットと成形品のイメージ">
-      </figure>
+  <section class="section section-dark" id="molding" aria-labelledby="md-h">
+    <div class="container molding-grid">
       <div>
-        <p class="eyebrow">02 Injection Molding</p>
-        <h2 id="md-h">射出成形のご相談</h2>
+        <div class="heading">
+          <p class="kicker">02 Injection Molding</p>
+          <h2 id="md-h">射出成形のご相談</h2>
+        </div>
+        <div class="molding-media"><img src="img/molding.jpg" width="1400" height="1045" alt="樹脂ペレットと成形品" loading="lazy"></div>
+      </div>
+      <div>
         <div class="items">
           <div class="item">
             <span class="tag">成形サポート</span>
@@ -226,7 +356,7 @@ p{margin:0}
           </div>
         </div>
         <div class="flow">
-          <h3>射出成形の流れ</h3>
+          <p class="flow-title">FLOW　<span>射出成形の流れ</span></p>
           <ol>
             <li class="step">材料</li><li class="arrow" aria-hidden="true"></li>
             <li class="step">成形</li><li class="arrow" aria-hidden="true"></li>
@@ -237,14 +367,12 @@ p{margin:0}
     </div>
   </section>
 
-  <section id="goods" aria-labelledby="gd-h">
-    <div class="wrap split">
-      <figure>
-        <img src="img/goods.jpg" width="1400" height="1045" alt="ビリビリグッズのイメージ">
-      </figure>
-      <div>
-        <p class="eyebrow">03 Novelty Goods</p>
-        <h2 id="gd-h">ビリビリグッズ販売</h2>
+  <section class="section" id="goods" aria-labelledby="gd-h">
+    <div class="container feature rev">
+      <div class="feature-media"><img src="img/goods.jpg" width="1400" height="1045" alt="ビリビリグッズ" loading="lazy"></div>
+      <div class="feature-text">
+        <p class="kicker">03 Novelty Goods</p>
+        <h2 class="h2" id="gd-h">ビリビリグッズ販売</h2>
         <div class="items">
           <div class="item">
             <span class="tag">話題商品</span>
@@ -261,24 +389,53 @@ p{margin:0}
     </div>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="ct-h">
-    <div class="wrap">
-      <div class="text">
-        <p class="eyebrow">Contact</p>
-        <h2 id="ct-h">お問い合わせ</h2>
-        <p>日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売についてお気軽にお問い合わせください。</p>
+  <section class="section contact" id="contact" aria-labelledby="ct-h">
+    <div class="container contact-panel">
+      <div>
+        <p class="kicker">Contact</p>
+        <h2 class="h2" id="ct-h">お問い合わせ</h2>
+        <p class="contact-lead">日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売についてお気軽にお問い合わせください。</p>
       </div>
-      <div class="tel">
-        <p class="tel-label">TEL・FAX</p>
-        <a class="tel-num" href="tel:0663102690">06-6310-2690</a>
-        <a class="btn" href="tel:0663102690">お問い合わせはこちら</a>
+      <div class="phone-panel">
+        <p class="label">TEL <span>・</span> FAX</p>
+        <a class="number" href="tel:0663102690">06-6310-2690</a>
+        <a class="button button-primary" href="tel:0663102690">お問い合わせはこちら
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap foot-row"><span>© ウチフク機械｜射出成形機販売・射出成形・ビリビリグッズ販売</span><span>※掲載している画像はイメージです。</span></div>
+<footer class="site-footer">
+  <div class="container foot-top">
+    <a class="brand" href="#top" aria-label="ウチフク機械 トップへ">
+      <span class="brand-mark" aria-hidden="true">UF</span>
+      <span class="brand-text"><b>ウチフク機械</b><small>UCHIFUKU KIKAI</small></span>
+    </a>
+    <nav class="foot-nav" aria-label="フッター">
+      <a href="#services">取扱サービス</a>
+      <a href="#machines">成形機販売</a>
+      <a href="#molding">射出成形</a>
+      <a href="#goods">ビリビリグッズ</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="container foot-bottom">
+    <span>© ウチフク機械｜射出成形機販売・射出成形・ビリビリグッズ販売</span>
+    <span>※掲載している画像はイメージです。</span>
+  </div>
 </footer>
+
+<script>
+(function(){
+  var head=document.getElementById('site-header'),btn=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  function onScroll(){head.classList.toggle('is-scrolled',window.scrollY>40)}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  function setOpen(o){head.classList.toggle('is-open',o);btn.setAttribute('aria-expanded',o?'true':'false')}
+  btn.addEventListener('click',function(){setOpen(!head.classList.contains('is-open'))});
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))setOpen(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
+})();
+</script>
 </body>
 </html>
