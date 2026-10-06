@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ウチフク機械｜日精の射出成形機販売・射出成形・ビリビリグッズ販売</title>
+<meta name="description" content="日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売まで。まじめに提案、ちょっと面白く、わかりやすく対応します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&family=Barlow+Condensed:wght@500&display=swap">
+<style>
+/* 白地に細い罫線。差し色は工作機械の「機械色」（灰みの青緑）を濃くしたもの1色だけ。左寄せの2段組み。 */
+:root{
+  --bg:#ffffff;
+  --panel:#eef2f0;          /* 機械色を薄く */
+  --ink:#1f2624;
+  --sub:#56605d;
+  --rule:#d5dcd9;
+  --accent:#2d5a52;         /* 機械色を濃く */
+  --accent-ink:#ffffff;
+  --display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  --label:"Barlow Condensed","Zen Kaku Gothic New",sans-serif;
+  --w:1080px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--w);margin:0 auto;padding-inline:24px}
+@media (max-width:600px){.wrap{padding-inline:18px}}
+
+/* header */
+.site-head{border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:.08em;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:4px 22px;flex-wrap:wrap;font-size:14px}
+.nav a{color:var(--sub);text-decoration:none}
+.nav a:hover{color:var(--accent)}
+.nav a.cta{color:var(--accent);font-weight:700}
+@media (max-width:760px){.site-head{position:static}.nav{gap:2px 16px;font-size:13px}}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:5fr 6fr;gap:48px;align-items:center;padding-block:56px 64px}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,64px);line-height:1.25;letter-spacing:.1em;margin:0 0 24px}
+.hero .lead{font-size:17px;margin:0;max-width:30em;text-wrap:pretty}
+.hero .tags{display:flex;flex-wrap:wrap;gap:0;margin:28px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.hero .tags li{font-size:14px;padding:10px 18px 10px 0;margin-right:18px;border-right:1px solid var(--rule)}
+.hero .tags li:last-child{border-right:0}
+@media (max-width:600px){.hero .tags li{border-right:0;padding-right:0}}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:36px 48px}}
+
+figure{margin:0;min-width:0}
+.hero .wrap > *,.split > *,.intro .wrap > *,.contact .wrap > *{min-width:0}
+figcaption{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.6}
+figcaption .gen{white-space:nowrap}
+
+/* sections */
+section{border-top:1px solid var(--rule);scroll-margin-top:60px}
+section > .wrap{padding-block:72px}
+@media (max-width:600px){section > .wrap{padding-block:52px}}
+.eyebrow{font-family:var(--label);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,34px);line-height:1.45;letter-spacing:.06em;margin:0 0 24px;text-wrap:balance}
+h3{font-size:18px;line-height:1.6;margin:0 0 8px;font-weight:700;text-wrap:balance}
+p{margin:0}
+.text{max-width:36em}
+.text p + p{margin-top:1em}
+
+/* intro */
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.points{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.points li{padding:16px 0;border-bottom:1px solid var(--rule);font-weight:500;display:flex;gap:14px;align-items:baseline}
+.points li::before{content:"";flex:0 0 8px;height:8px;background:var(--accent);transform:translateY(-2px)}
+@media (max-width:760px){.intro .wrap{grid-template-columns:1fr;gap:32px}}
+
+/* services */
+.services{background:var(--panel);border-top:0}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);margin:8px 0 0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.svc li{padding:24px 24px 28px 0;border-right:1px solid var(--rule);min-width:0}
+.svc li + li{padding-left:24px}
+.svc li:last-child{border-right:0}
+.svc .no{font-family:var(--label);font-size:15px;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:6px}
+.svc a{color:inherit;text-decoration:none}
+.svc a:hover h3{color:var(--accent)}
+.svc p{font-size:15px;color:var(--sub)}
+@media (max-width:760px){.svc{grid-template-columns:1fr}.svc li,.svc li + li{padding:20px 0;border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* split blocks */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.split.rev > figure{order:2}
+@media (max-width:820px){.split{grid-template-columns:1fr;gap:28px}.split.rev > figure{order:0}}
+.aside{margin-top:36px;padding:24px 0 0;border-top:1px solid var(--rule)}
+.quote{font-family:var(--display);font-size:18px;line-height:1.9;margin:10px 0 12px;padding-left:16px;border-left:2px solid var(--accent)}
+.note{font-size:13px;color:var(--sub)}
+
+.items{display:grid;gap:0;border-top:1px solid var(--ink)}
+.item{padding:22px 0;border-bottom:1px solid var(--rule)}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);border:1px solid var(--accent);padding:1px 8px;margin-bottom:10px;letter-spacing:.08em}
+
+/* flow */
+.flow{margin-top:36px}
+.flow h3{font-size:15px;color:var(--sub);font-weight:500;margin-bottom:12px}
+.flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px}
+.flow li.step{border:1px solid var(--ink);text-align:center;padding:14px 8px;font-weight:700;font-size:17px;letter-spacing:.2em}
+.flow li.step:last-child{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.flow li.arrow{width:28px;height:1px;background:var(--ink);position:relative}
+.flow li.arrow::after{content:"";position:absolute;right:0;top:-4px;border:4.5px solid transparent;border-left:7px solid var(--ink);border-right:0}
+
+/* contact */
+.contact{background:var(--accent);color:var(--accent-ink);border-top:0}
+.contact .wrap{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.contact .eyebrow{color:var(--accent-ink);opacity:.75}
+.contact h2{margin-bottom:16px}
+.btn{display:inline-block;background:var(--bg);color:var(--accent);text-decoration:none;font-weight:700;padding:16px 36px;border:1px solid var(--bg);letter-spacing:.06em}
+.btn:hover{background:transparent;color:var(--accent-ink)}
+.btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+@media (max-width:760px){.contact .wrap{grid-template-columns:1fr}}
+
+.site-foot{border-top:1px solid var(--rule)}
+.site-foot .wrap{padding-block:28px;font-size:12px;color:var(--sub)}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top">ウチフク機械</a>
+    <nav class="nav" aria-label="ページ内">
+      <a href="#services">取扱サービス</a>
+      <a href="#machines">成形機販売</a>
+      <a href="#molding">射出成形</a>
+      <a href="#goods">ビリビリグッズ</a>
+      <a class="cta" href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>ウチフク機械</h1>
+        <p class="lead">日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売まで。まじめに提案、ちょっと面白く、わかりやすく対応します。</p>
+        <ul class="tags" aria-label="サービス紹介">
+          <li>成形機販売</li><li>射出成形</li><li>ビリビリグッズ販売</li>
+        </ul>
+      </div>
+      <figure>
+        <img src="img/hero.jpg" width="1024" height="688" alt="射出成形機が置かれた工場のイメージ">
+        <figcaption>射出成形機イメージ <span class="gen">（生成画像。実際の機械ではありません）</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section class="intro" aria-labelledby="intro-h">
+    <div class="wrap">
+      <div class="text">
+        <h2 id="intro-h">機械も、成形も、<br>ちょっと面白い商品も。</h2>
+        <p>ウチフク機械は、日精の射出成形機販売を中心に、射出成形に関するご相談や、イベント性のあるビリビリグッズ販売まで、幅広く対応しています。</p>
+      </div>
+      <ul class="points">
+        <li>日精の成形機販売に対応</li>
+        <li>射出成形のご相談もOK</li>
+        <li>中古機・更新・増設にも対応</li>
+        <li>ビリビリグッズ販売を追加</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="services" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h2 id="svc-h">取扱サービス</h2>
+      <ul class="svc">
+        <li><a href="#machines"><span class="no">01</span><h3>日精の射出成形機販売</h3><p>新品・中古を含めて、現場に合う機種選定をお手伝いします。</p></a></li>
+        <li><a href="#molding"><span class="no">02</span><h3>射出成形</h3><p>製品づくりに関するご相談、成形条件や設備選びの方向性などもご相談いただけます。</p></a></li>
+        <li><a href="#goods"><span class="no">03</span><h3>ビリビリグッズ販売</h3><p>ちょっと目を引く、話題になる、面白さのあるビリビリグッズも取り扱います。</p></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="machines" aria-labelledby="mc-h">
+    <div class="wrap split">
+      <figure>
+        <img src="img/machine.jpg" width="1024" height="688" alt="射出成形機の型締め部分のイメージ">
+        <figcaption>射出成形機イメージ <span class="gen">（生成画像。実際の機械ではありません）</span></figcaption>
+      </figure>
+      <div class="text">
+        <p class="eyebrow">01 Machines</p>
+        <h2 id="mc-h">日精の成形機をお探しなら、ウチフク機械へ</h2>
+        <p>射出成形機は、価格だけで決めると後で困ることがあります。製品サイズ、必要な能力、設置スペース、将来の生産計画まで見ながら、現場に合う機械選びをお手伝いします。</p>
+        <div class="aside">
+          <h3>購入前のご相談も、かたくなりすぎずに。</h3>
+          <p class="quote">「まずは焼肉でも」「ゴルフしながらざっくばらんに」そんな人付き合いを大切にした、ちょっと面白いご相談スタイルも歓迎しています。</p>
+          <p class="note">※親睦を深めながらのご相談イメージです。実際の商談内容は誠実に対応いたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="molding" aria-labelledby="md-h">
+    <div class="wrap split rev">
+      <figure>
+        <img src="img/molding.jpg" width="1024" height="688" alt="樹脂のペレットと成形品のイメージ">
+        <figcaption>射出成形 イメージ／製品づくりの相談も対応 <span class="gen">（生成画像）</span></figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">02 Injection Molding</p>
+        <h2 id="md-h">射出成形のご相談</h2>
+        <div class="items">
+          <div class="item">
+            <span class="tag">成形サポート</span>
+            <h3>製品づくりを相談しやすく</h3>
+            <p>「こういう製品を作りたい」「今の設備で対応できるか」など、射出成形に関する相談窓口としても対応します。</p>
+          </div>
+          <div class="item">
+            <span class="tag">相談歓迎</span>
+            <h3>設備だけでなく工程の相談も</h3>
+            <p>初めての導入や更新時にも、わかりやすい言葉でご説明します。</p>
+          </div>
+        </div>
+        <div class="flow">
+          <h3>射出成形の流れ</h3>
+          <ol>
+            <li class="step">材料</li><li class="arrow" aria-hidden="true"></li>
+            <li class="step">成形</li><li class="arrow" aria-hidden="true"></li>
+            <li class="step">製品</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="goods" aria-labelledby="gd-h">
+    <div class="wrap split">
+      <figure>
+        <img src="img/goods.jpg" width="1024" height="688" alt="ビリビリグッズのイメージ">
+        <figcaption>ビリビリグッズ／イベント・話題作りに。販売イメージ／ユニークな品ぞろえに対応 <span class="gen">（生成画像。実際の商品ではありません）</span></figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">03 Novelty Goods</p>
+        <h2 id="gd-h">ビリビリグッズ販売</h2>
+        <div class="items">
+          <div class="item">
+            <span class="tag">話題商品</span>
+            <h3>面白さのある商品も販売</h3>
+            <p>ちょっとインパクトのある、話のネタになるビリビリグッズも追加しました。</p>
+          </div>
+          <div class="item">
+            <span class="tag">ユニーク商品</span>
+            <h3>販促やイベント向けにも</h3>
+            <p>目を引く商品を探している方にも、面白い方向性でご提案できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="ct-h">
+    <div class="wrap">
+      <div class="text">
+        <p class="eyebrow">Contact</p>
+        <h2 id="ct-h">お問い合わせ</h2>
+        <p>日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売についてお気軽にお問い合わせください。</p>
+      </div>
+      <a class="btn" href="contact.html">お問い合わせはこちら</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">© ウチフク機械｜射出成形機販売・射出成形・ビリビリグッズ販売</div>
+</footer>
+</body>
+</html>
