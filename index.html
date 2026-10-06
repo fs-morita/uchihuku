@@ -119,6 +119,10 @@ p{margin:0}
 .contact .wrap{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
 .contact .eyebrow{color:var(--accent-ink);opacity:.75}
 .contact h2{margin-bottom:16px}
+.tel{display:grid;justify-items:start;gap:4px}
+.tel-label{font-size:13px;font-weight:700;letter-spacing:.12em;opacity:.75}
+.tel-num{font-family:var(--label);font-weight:600;font-size:clamp(36px,4.6vw,52px);line-height:1.1;letter-spacing:.04em;color:var(--accent-ink);text-decoration:none;margin-bottom:20px}
+.tel-num:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
 .btn{display:inline-block;background:var(--bg);color:var(--accent);text-decoration:none;font-weight:700;padding:16px 36px;border:1px solid var(--bg);letter-spacing:.06em}
 .btn:hover{background:transparent;color:var(--accent-ink)}
 .btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
@@ -264,7 +268,11 @@ p{margin:0}
         <h2 id="ct-h">お問い合わせ</h2>
         <p>日精の射出成形機販売、射出成形のご相談、ビリビリグッズ販売についてお気軽にお問い合わせください。</p>
       </div>
-      <a class="btn" href="contact.html">お問い合わせはこちら</a>
+      <div class="tel">
+        <p class="tel-label">TEL・FAX</p>
+        <a class="tel-num" href="tel:0663102690">06-6310-2690</a>
+        <a class="btn" href="tel:0663102690">お問い合わせはこちら</a>
+      </div>
     </div>
   </section>
 </main>
